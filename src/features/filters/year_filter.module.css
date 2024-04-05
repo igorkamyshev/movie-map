@@ -1,0 +1,7 @@
+.mark:where([data-filled]) {
+  border-color: var(--mantine-color-gray-2);
+}
+
+.bar {
+  background-color: transparent;
+}

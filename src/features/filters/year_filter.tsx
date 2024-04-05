@@ -12,6 +12,7 @@ import {
 } from "./year.model";
 import { AutoChange } from "./auto_change";
 import { desktop } from "../../services/breakpoints";
+import styles from "./year_filter.module.css";
 
 export const YearSlider = reflect({
   view: Slider,
@@ -36,6 +37,7 @@ export const YearSlider = reflect({
     }),
     color: "blue",
     showLabelOnHover: false,
+    classNames: { mark: styles.mark, bar: styles.bar },
   },
 });
 
