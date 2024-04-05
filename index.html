@@ -1,16 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Кино</title>
+
+    <title>Карта наград кинофильмам</title>
+    <meta property="og:title" content="Карта наград кинофильмам" />
+
+    <meta
+      name="description"
+      content="Интерактивное отображение победителей
+    и номинантов кинопремий на карте. Чем больше фильмов из региона было
+    наминировано (или победило) — тем теменее регион окрашен на
+    карте."
+    />
+    <meta
+      property="og:description"
+      content="Интерактивное отображение победителей
+    и номинантов кинопремий на карте. Чем больше фильмов из региона было
+    наминировано (или победило) — тем теменее регион окрашен на
+    карте."
+    />
   </head>
   <body>
     <div id="root"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" integrity="sha512-oJp0DdQuQQrRsKVly+Ww6fAN1GwJN7d1bi8UubpEbzDUh84WrJ2CFPBnT4LqBCcfqTcHR5OGXFFhaPe3g1/bzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js" integrity="sha512-lLzVYAFP6O6AJia/WjYVszSXRM5J1Lrk5o98+w9gmRhEHF4T2xGjdXA/X2XKF4WPJ82hyhdDeZ8h833wGD4Dhw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.9/datamaps.world.min.js" integrity="sha512-ShMIwoBgGctXjiRZubJipPPimOnfP7JgsipylJsQ0mlQaHltZJM5MK4u/7QaBd2bWwDDQ93eDdorzUBC3PJBOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"
+      integrity="sha512-oJp0DdQuQQrRsKVly+Ww6fAN1GwJN7d1bi8UubpEbzDUh84WrJ2CFPBnT4LqBCcfqTcHR5OGXFFhaPe3g1/bzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.20/topojson.min.js"
+      integrity="sha512-lLzVYAFP6O6AJia/WjYVszSXRM5J1Lrk5o98+w9gmRhEHF4T2xGjdXA/X2XKF4WPJ82hyhdDeZ8h833wGD4Dhw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/datamaps/0.5.9/datamaps.world.min.js"
+      integrity="sha512-ShMIwoBgGctXjiRZubJipPPimOnfP7JgsipylJsQ0mlQaHltZJM5MK4u/7QaBd2bWwDDQ93eDdorzUBC3PJBOA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
