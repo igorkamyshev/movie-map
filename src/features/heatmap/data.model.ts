@@ -6,5 +6,5 @@ import { $yearFilter } from "../filters";
 export const $filteredData = combine(
   allDataQuery.$data,
   $yearFilter,
-  (data, year) => data.filter((item) => item.year === year) ?? []
+  (data, year) => data[year.toString()] ?? {}
 );

@@ -1,5 +1,6 @@
 import { createGate } from "effector-react";
 import { attach, createStore, sample } from "effector";
+import { mapValues } from "lodash";
 import "../../vendor/datamaps";
 
 import { $pallet } from "./colors.model";
@@ -53,11 +54,7 @@ const updateColorsFx = attach({
       return;
     }
 
-    map.updateChoropleth(
-      Object.fromEntries(
-        values.map((item) => [item.country, pallet(item.amount)])
-      )
-    );
+    map.updateChoropleth(mapValues(values, (amount) => pallet(amount)));
   },
 });
 

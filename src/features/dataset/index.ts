@@ -1,1 +1,1 @@
-export { $maxAmount, $minAmount, allDataQuery } from "./dataset.model";
+export { allDataQuery } from "./dataset.model";
