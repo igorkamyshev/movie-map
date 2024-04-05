@@ -1,1 +1,1 @@
-export { allDataQuery } from "./dataset.model";
+export { allDataQuery, awardsQuery } from "./dataset.model";

@@ -12,6 +12,7 @@ await client.connect();
 
 const STEP = 10;
 
+const awards = new Set();
 const finalData = {};
 
 for (const year of _.range(1920, 2030, STEP)) {
@@ -33,21 +34,37 @@ for (const year of _.range(1920, 2030, STEP)) {
     ])
     .toArray();
 
-  const countries = _.mapValues(
-    _.groupBy(
-      result
-        .map((item) => item.movie.at(0)?.countries.map((c) => c.name))
-        .flat()
-        .map((c) => COUNTRY_MAP.get(c))
-        .flat()
-        .filter(Boolean)
-    ),
-    (list) => list.length
-  );
+  for (const item of result) {
+    awards.add(item.nomination.award.title);
+  }
 
-  finalData[year.toString()] = countries;
+  const aggregated = result.map((item) => ({
+    countries: item.movie
+      .at(0)
+      ?.countries.map((c) => COUNTRY_MAP.get(c.name))
+      .filter(Boolean),
+    award: item.nomination.award.title,
+  }));
+
+  finalData[year] = {};
+
+  for (const { countries, award } of aggregated) {
+    for (const country of countries) {
+      if (!finalData[year][country]) {
+        finalData[year][country] = {};
+      }
+      if (!finalData[year][country][award]) {
+        finalData[year][country][award] = 0;
+      }
+      finalData[year][country][award]++;
+    }
+  }
 }
 
 await client.close();
 
-await writeFile("data/unfiltered.json", JSON.stringify(finalData, null, 2));
+await writeFile("data/countries.json", JSON.stringify(finalData, null, 2));
+await writeFile(
+  "data/awards.json",
+  JSON.stringify(Array.from(awards.values()), null, 2)
+);

@@ -4,7 +4,7 @@ import { mapValues } from "lodash";
 import "../../vendor/datamaps";
 
 import { $pallet } from "./colors.model";
-import { $filteredData } from "./data.model";
+import { $allCountries, $filteredData } from "./data.model";
 
 // @ts-expect-error datamap does not have any typings
 const Datamap = window.Datamap;
@@ -17,8 +17,8 @@ export const HeatmapGate = createGate<{
 const $map = createStore<any>(null);
 
 const createMapFx = attach({
-  source: $map,
-  async effect(oldMap, ref: { current: HTMLDivElement | null }) {
+  source: { oldMap: $map, pallete: $pallet },
+  async effect({ oldMap, pallete }, ref: { current: HTMLDivElement | null }) {
     if (oldMap) {
       // destroy old map
       oldMap.options.element.innerHTML = "";
@@ -36,7 +36,7 @@ const createMapFx = attach({
         popupOnHover: false,
       },
       fills: {
-        defaultFill: "lightgray",
+        defaultFill: pallete(0),
       },
     });
 
@@ -48,11 +48,20 @@ sample({ clock: HeatmapGate.open, fn: ({ ref }) => ref, target: createMapFx });
 sample({ clock: createMapFx.doneData, target: $map });
 
 const updateColorsFx = attach({
-  source: { map: $map, pallet: $pallet, values: $filteredData },
-  async effect({ map, pallet, values }) {
+  source: {
+    map: $map,
+    pallet: $pallet,
+    values: $filteredData,
+    countries: $allCountries,
+  },
+  async effect({ map, pallet, values, countries }) {
     if (!map) {
       return;
     }
+
+    map.updateChoropleth(
+      Object.fromEntries(countries.map((country) => [country, pallet(0)]))
+    );
 
     map.updateChoropleth(mapValues(values, (amount) => pallet(amount)));
   },

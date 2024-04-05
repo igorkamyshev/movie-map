@@ -1,7 +1,7 @@
-import { AppShell, Burger, Grid } from "@mantine/core";
+import { AppShell, Burger, Grid, Stack, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
-import { YearFilter, AutoChange } from "./features/filters";
+import { YearFilter, AutoChange, AwardFilter } from "./features/filters";
 import { Heatmap } from "./features/heatmap";
 
 function App() {
@@ -19,9 +19,14 @@ function App() {
     >
       <AppShell.Header>
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <div>Тут будет пояснение</div>
+        <Title order={1}>НАЗВАНИЕ</Title>
       </AppShell.Header>
-      <AppShell.Navbar p="md">Тут будут фильмы</AppShell.Navbar>
+      <AppShell.Navbar p="md">
+        <Stack>
+          <Title order={2}>Премии</Title>
+          <AwardFilter />
+        </Stack>
+      </AppShell.Navbar>
       <AppShell.Main>
         <Heatmap />
         <Grid>
