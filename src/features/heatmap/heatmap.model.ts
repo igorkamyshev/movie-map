@@ -1,7 +1,6 @@
 import { createGate } from "effector-react";
 import { attach, createStore, sample } from "effector";
 import { mapValues } from "lodash";
-import "../../vendor/datamaps";
 
 import { $pallet } from "./colors.model";
 import { $allCountries, $filteredData } from "./data.model";
