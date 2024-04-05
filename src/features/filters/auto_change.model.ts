@@ -24,10 +24,10 @@ sample({
   target: changeYearFilter,
 });
 
-// then change year every second
+// then change year automatically
 sample({
   clock: interval({
-    timeout: 1_000,
+    timeout: 700,
     start: startAutoChange,
     stop: stopAutoChange,
   }).tick,

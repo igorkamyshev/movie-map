@@ -15,6 +15,7 @@
     "@mantine/core": "^7.7.1",
     "@mantine/hooks": "^7.7.1",
     "@tabler/icons-react": "^3.1.0",
+    "@withease/web-api": "^1.2.1",
     "effector": "^23.2.0",
     "effector-react": "^23.2.0",
     "lodash": "^4.17.21",

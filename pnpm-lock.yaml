@@ -20,6 +20,9 @@ dependencies:
   '@tabler/icons-react':
     specifier: ^3.1.0
     version: 3.1.0(react@18.2.0)
+  '@withease/web-api':
+    specifier: ^1.2.1
+    version: 1.2.1(effector@23.2.0)
   effector:
     specifier: ^23.2.0
     version: 23.2.0
@@ -1093,6 +1096,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@withease/web-api@1.2.1(effector@23.2.0):
+    resolution: {integrity: sha512-4+WlGfawSIziEkelUCZ337sEdaMJoywKQj9f8bK5Owy9TiY0IVRJpgs3I0v0CR94EIVP46LCjfX1kJl8Kqwjqg==}
+    peerDependencies:
+      effector: ^22.5.0 || ^23.0.0
+    dependencies:
+      effector: 23.2.0
+    dev: false
 
   /acorn-jsx@5.3.2(acorn@8.11.3):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}

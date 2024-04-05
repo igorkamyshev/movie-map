@@ -5,6 +5,7 @@ import "../../vendor/datamaps";
 
 import { $pallet } from "./colors.model";
 import { $allCountries, $filteredData } from "./data.model";
+import { desktop, mobile } from "../../services/breakpoints";
 
 // @ts-expect-error datamap does not have any typings
 const Datamap = window.Datamap;
@@ -46,7 +47,12 @@ const createMapFx = attach({
   },
 });
 
-sample({ clock: HeatmapGate.open, fn: ({ ref }) => ref, target: createMapFx });
+sample({
+  clock: [HeatmapGate.open, desktop.matched, mobile.matched],
+  source: HeatmapGate.state,
+  fn: ({ ref }) => ref,
+  target: createMapFx,
+});
 sample({ clock: createMapFx.doneData, target: $map });
 
 const updateColorsFx = attach({
@@ -69,4 +75,7 @@ const updateColorsFx = attach({
   },
 });
 
-sample({ clock: [$filteredData, $map], target: updateColorsFx });
+sample({
+  clock: [$filteredData, $map],
+  target: updateColorsFx,
+});
