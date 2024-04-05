@@ -1,5 +1,5 @@
 import { useUnit } from "effector-react";
-import { Checkbox } from "@mantine/core";
+import { Checkbox, Title } from "@mantine/core";
 
 import { $awardsFilterBoundaries, toggleAward } from "./awards_filter.model";
 
@@ -11,6 +11,7 @@ export function AwardFilter() {
 
   return (
     <>
+      <Title order={2}>Премии</Title>
       {boundaries.map((item) => (
         <Checkbox
           key={item.label}
