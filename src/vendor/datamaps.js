@@ -12642,6 +12642,10 @@
         };
       }
     };
+
+    function require(name) {
+        return window[name]
+    }
   
     // Expose library
     if (typeof exports === 'object') {
