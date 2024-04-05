@@ -1,7 +1,12 @@
 import { AppShell, Burger, Grid, Stack, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
-import { YearFilter, AutoChange, AwardFilter } from "./features/filters";
+import {
+  YearFilter,
+  AutoChange,
+  AwardFilter,
+  WinningFilter,
+} from "./features/filters";
 import { Heatmap } from "./features/heatmap";
 
 function App() {
@@ -23,6 +28,7 @@ function App() {
       </AppShell.Header>
       <AppShell.Navbar p="md">
         <Stack>
+          <WinningFilter />
           <Title order={2}>Премии</Title>
           <AwardFilter />
         </Stack>

@@ -44,19 +44,25 @@ for (const year of _.range(1920, 2030, STEP)) {
       ?.countries.map((c) => COUNTRY_MAP.get(c.name))
       .filter(Boolean),
     award: item.nomination.award.title,
+    win: item.winning,
   }));
 
   finalData[year] = {};
 
-  for (const { countries, award } of aggregated) {
+  for (const { countries, award, win } of aggregated) {
     for (const country of countries) {
       if (!finalData[year][country]) {
         finalData[year][country] = {};
       }
       if (!finalData[year][country][award]) {
-        finalData[year][country][award] = 0;
+        finalData[year][country][award] = { win: 0, nomination: 0 };
       }
-      finalData[year][country][award]++;
+
+      if (win) {
+        finalData[year][country][award].win++;
+      } else {
+        finalData[year][country][award].nomination++;
+      }
     }
   }
 }

@@ -10,7 +10,10 @@ export const allDataQuery = createQuery({
 
     return countries as Record<
       string /* year */,
-      Record<string /* country */, Record<string /* award */, number>>
+      Record<
+        string /* country */,
+        Record<string /* award */, { win: number; nomination: number }>
+      >
     >;
   },
 });

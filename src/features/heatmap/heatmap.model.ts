@@ -28,6 +28,8 @@ const createMapFx = attach({
       return;
     }
 
+    ref.current.innerHTML = "";
+
     const map = new Datamap({
       element: ref.current,
       projection: "mercator",
