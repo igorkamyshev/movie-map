@@ -42,7 +42,8 @@ for (const year of _.range(1920, 2030, STEP)) {
     countries: item.movie
       .at(0)
       ?.countries.map((c) => COUNTRY_MAP.get(c.name))
-      .filter(Boolean),
+      .filter(Boolean)
+      .flat(),
     award: item.nomination.award.title,
     win: item.winning,
   }));
@@ -51,6 +52,7 @@ for (const year of _.range(1920, 2030, STEP)) {
 
   for (const { countries, award, win } of aggregated) {
     for (const country of countries) {
+      console.log(country);
       if (!finalData[year][country]) {
         finalData[year][country] = {};
       }
