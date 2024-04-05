@@ -10,7 +10,7 @@ export function Heatmap() {
   return (
     <div
       ref={ref}
-      style={{ width: "100%", height: "500px", position: "relative" }}
+      style={{ width: "100%", height: "80%", position: "relative" }}
     />
   );
 }

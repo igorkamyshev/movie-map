@@ -4,7 +4,6 @@ import { mapValues } from "lodash";
 
 import { $pallet } from "./colors.model";
 import { $allCountries, $filteredData } from "./data.model";
-import { desktop, mobile } from "../../services/breakpoints";
 
 // @ts-expect-error datamap does not have any typings
 const Datamap = window.Datamap;
@@ -16,10 +15,14 @@ export const HeatmapGate = createGate<{
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const $map = createStore<any>(null);
 
+const MapResizeListenerStorage = Symbol("MapResizeListenerStorage");
+
 const createMapFx = attach({
   source: { oldMap: $map, pallete: $pallet },
   async effect({ oldMap, pallete }, ref: { current: HTMLDivElement | null }) {
     if (oldMap) {
+      window.removeEventListener("resize", oldMap[MapResizeListenerStorage]);
+
       // destroy old map
       oldMap.options.element.innerHTML = "";
     }
@@ -28,11 +31,13 @@ const createMapFx = attach({
       return;
     }
 
+    // destroy old map one more time 😇
     ref.current.innerHTML = "";
 
     const map = new Datamap({
       element: ref.current,
       projection: "mercator",
+      responsive: true,
       geographyConfig: {
         highlightOnHover: false,
         popupOnHover: false,
@@ -42,13 +47,17 @@ const createMapFx = attach({
       },
     });
 
+    const listener = () => map.resize();
+    window.addEventListener("resize", listener);
+    // Store listener inside map instance to remove it later
+    map[MapResizeListenerStorage] = listener;
+
     return map;
   },
 });
 
 sample({
-  clock: [HeatmapGate.open, desktop.matched, mobile.matched],
-  source: HeatmapGate.state,
+  clock: HeatmapGate.open,
   fn: ({ ref }) => ref,
   target: createMapFx,
 });
