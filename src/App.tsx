@@ -1,7 +1,6 @@
 import {
   AppShell,
   Burger,
-  Grid,
   Stack,
   Title,
   Group,
@@ -11,12 +10,7 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { variant } from "@effector/reflect";
 
-import {
-  YearFilter,
-  AutoChange,
-  WinningFilter,
-  AwardFilter,
-} from "./features/filters";
+import { YearFilter, WinningFilter, AwardFilter } from "./features/filters";
 import { Heatmap } from "./features/heatmap";
 import { InfoButton, InfoModal } from "./features/info";
 import { mobile } from "./services/breakpoints";
@@ -32,32 +26,16 @@ function MobileApp() {
         </AppShell.Header>
         <AppShell.Main>
           <Heatmap />
-          <Grid>
-            <Grid.Col span="content">
-              <AutoChange />
-            </Grid.Col>
-            <Grid.Col span="auto">
-              <YearFilter />
-            </Grid.Col>
-            <Grid.Col span={12}>
-              <Space h="lg" />
-            </Grid.Col>
-            <Grid.Col span={12}>
-              <Divider />
-            </Grid.Col>
-            <Grid.Col span={12}>
-              <Stack>
-                <WinningFilter />
-                <AwardFilter />
-              </Stack>
-            </Grid.Col>
-            <Grid.Col span={12}>
-              <Divider />
-            </Grid.Col>
-            <Grid.Col span={12}>
-              <InfoButton />
-            </Grid.Col>
-          </Grid>
+          <Stack>
+            <Space h="lg" />
+            <YearFilter />
+            <Divider />
+            <WinningFilter />
+            <AwardFilter />
+            <Divider />
+            <InfoButton />
+            <Space h="lg" />
+          </Stack>
         </AppShell.Main>
       </AppShell>
       <InfoModal />
@@ -101,14 +79,8 @@ function DesktopApp() {
         </AppShell.Navbar>
         <AppShell.Main>
           <Heatmap />
-          <Grid>
-            <Grid.Col span="content">
-              <AutoChange />
-            </Grid.Col>
-            <Grid.Col span="auto">
-              <YearFilter />
-            </Grid.Col>
-          </Grid>
+          <Space h="lg" />
+          <YearFilter />
         </AppShell.Main>
       </AppShell>
       <InfoModal />

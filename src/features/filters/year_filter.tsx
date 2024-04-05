@@ -1,4 +1,4 @@
-import { Slider } from "@mantine/core";
+import { Grid, Slider } from "@mantine/core";
 import { reflect } from "@effector/reflect";
 import { combine } from "effector";
 import { range } from "lodash";
@@ -10,9 +10,10 @@ import {
   $yearFilterStep,
   changeYearFilter,
 } from "./year.model";
+import { AutoChange } from "./auto_change";
 import { desktop } from "../../services/breakpoints";
 
-export const YearFilter = reflect({
+export const YearSlider = reflect({
   view: Slider,
   bind: {
     step: $yearFilterStep,
@@ -37,3 +38,16 @@ export const YearFilter = reflect({
     showLabelOnHover: false,
   },
 });
+
+export function YearFilter() {
+  return (
+    <Grid>
+      <Grid.Col span="content">
+        <AutoChange />
+      </Grid.Col>
+      <Grid.Col span="auto">
+        <YearSlider />
+      </Grid.Col>
+    </Grid>
+  );
+}

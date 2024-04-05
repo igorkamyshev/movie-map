@@ -1,5 +1,4 @@
 export { YearFilter } from "./year_filter";
-export { AutoChange } from "./auto_change";
 export { AwardFilter } from "./awards_filter";
 export { WinningFilter } from "./winning_filter";
 export { $winningFilter } from "./winning_filter.model";
